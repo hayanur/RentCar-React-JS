@@ -1,15 +1,13 @@
 import { Menu, Group, Center, Burger, Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
+import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from '../styles/Header.module.css';
-import Image from 'next/image'
-import Logo from '@/../public/logo.png' 
-import Link from 'next/link'
 
 const links = [
-  { link: '/', label: 'Home' },
-  { link: '/list', label: 'Unit' },
-  { link: '/about', label: 'About' },
+  { link: '/about', label: 'Features' },
+  { link: '/About', label: 'About' },
+  { link: '/pricing', label: 'Pricing' },
 ];
 
 export default function Header() {
@@ -41,12 +39,14 @@ export default function Header() {
     }
 
     return (
-      <Link
+      <a
+        key={link.label}
         href={link.link}
         className={classes.link}
+        onClick={(event) => event.preventDefault()}
       >
         {link.label}
-      </Link>
+      </a>
     );
   });
 
@@ -54,12 +54,7 @@ export default function Header() {
     <header className={classes.header}>
       <Container size="md">
         <div className={classes.inner}>
-        <Image
-        src={Logo}
-        alt="Your Image Alt Text"
-        width={60}  // Adjust the width as needed
-        height={60} // Adjust the height as needed
-      />
+          <MantineLogo size={28} />
           <Group gap={5} visibleFrom="sm">
             {items}
           </Group>
